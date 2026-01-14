@@ -133,7 +133,7 @@ The TUI must mimic the classic 3-pane layout:
 Before marking the task as complete, the Agent must generate and pass the following tests:
 
 1. **Load Test:** Spawn 5,000 dummy processes (using `multiprocessing`). Ensure UI FPS > 30.
-2. **Chaos Monkey:** Randomly terminate processes while the monitor is running. Ensure no `NoSuchProcess` crash.
+2. **Chaos Monkey:** Randomly terminate processes from dummy processes while the monitor is running. Ensure no `NoSuchProcess` crash.
 3. **Leak Check:** Run for 60 seconds. Ensure RAM usage delta is < 1MB.
 
 ---
