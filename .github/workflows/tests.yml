@@ -29,6 +29,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e ".[dev]"
 
-      - name: Run tests
+      - name: Run unit tests
         run: |
-          pytest -v
+          pytest tests/test_app.py tests/test_models.py tests/test_monitor.py -v
+
+      - name: Run verification suite (load test)
+        run: |
+          pytest tests/test_verification_load.py -v
+
+      - name: Run verification suite (chaos monkey)
+        run: |
+          pytest tests/test_verification_chaos.py -v
+
+      - name: Run verification suite (memory leak check)
+        run: |
+          pytest tests/test_verification_leak.py -v
