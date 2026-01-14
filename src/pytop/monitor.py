@@ -1,6 +1,7 @@
 """System monitoring engine for pytop."""
 
 import threading
+import time
 from collections import deque
 from dataclasses import dataclass
 from queue import Queue
@@ -122,8 +123,6 @@ class SystemMonitor:
 
         # Collect uptime
         boot_time = psutil.boot_time()
-        import time
-
         uptime = time.time() - boot_time
 
         # Collect process snapshots
