@@ -1,5 +1,9 @@
 # pytop
 
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PyPI version](https://badge.fury.io/py/pytop.svg)](https://pypi.org/project/pytop/)
+
 A Python system monitor (htop clone) built with Textual and psutil. Features real-time CPU, memory, and process monitoring in a terminal UI.
 
 ## Features
@@ -29,6 +33,8 @@ pip install -e .
 ```bash
 pytop
 ```
+
+![pytop system monitor](screenshot.png)
 
 ## Keybindings
 
