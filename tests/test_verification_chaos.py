@@ -56,8 +56,11 @@ class TestChaosMonkey:
             snapshot = queue.get(timeout=5.0)
             assert snapshot is not None
 
-            # Randomly terminate processes while monitor is running
-            processes_to_kill = random.sample(processes, min(25, len(processes)))
+            # Randomly terminate a portion of processes while monitor is running
+            # Using half the processes (or 25, whichever is smaller) as a balance
+            # between creating chaos and maintaining enough processes for measurement
+            kill_count = min(len(processes) // 2, 25)
+            processes_to_kill = random.sample(processes, kill_count)
 
             for p in processes_to_kill:
                 if p.is_alive():
