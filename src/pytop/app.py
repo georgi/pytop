@@ -93,7 +93,8 @@ class HeaderStats(Static):
             bar_len = int(usage / 5)
             bar_len = min(bar_len, 20)  # Cap at 20 chars
             bar = "[green]█[/green]" * bar_len + "[dim]░[/dim]" * (20 - bar_len)
-            lines.append(f"CPU{i:<2} [{bar}] {usage:5.1f}%")
+            # Use escaped brackets for the bar container
+            lines.append(f"CPU{i:<2} \\[{bar}] {usage:5.1f}%")
         return "\n".join(lines)
 
     def _get_mem_info(self) -> str:
@@ -129,9 +130,10 @@ class HeaderStats(Static):
         else:
             uptime_str = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
 
+        # Use escaped brackets for the bar containers
         return (
-            f"Mem[{mem_bar}] {mem_used_gb:.1f}G/{mem_total_gb:.1f}G\n"
-            f"Swp[{swap_bar}] {swap_used_gb:.1f}G/{swap_total_gb:.1f}G\n"
+            f"Mem\\[{mem_bar}] {mem_used_gb:.1f}G/{mem_total_gb:.1f}G\n"
+            f"Swp\\[{swap_bar}] {swap_used_gb:.1f}G/{swap_total_gb:.1f}G\n"
             f"Load average: {load_avg[0]:.2f} {load_avg[1]:.2f} {load_avg[2]:.2f}\n"
             f"Uptime: {uptime_str}"
         )
