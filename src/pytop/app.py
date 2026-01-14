@@ -338,7 +338,8 @@ class PytopApp(App):
             if snapshot is not None:
                 self._update_ui(snapshot)
         except Exception:
-            pass  # Silently handle any errors to keep the app running
+            # Per spec "Permission Grace": app must never crash
+            pass
 
     def _update_ui(self, snapshot: SystemSnapshot) -> None:
         """Update the UI with the new system snapshot."""
@@ -347,6 +348,7 @@ class PytopApp(App):
             header = self.query_one("#header-stats", HeaderStats)
             header.update_stats(snapshot)
         except Exception:
+            # Per spec "Permission Grace": app must never crash
             pass
 
         # Update process table
@@ -354,6 +356,7 @@ class PytopApp(App):
             process_table = self.query_one(ProcessTable)
             process_table.update_processes(snapshot.processes)
         except Exception:
+            # Per spec "Permission Grace": app must never crash
             pass
 
     def action_sort(self) -> None:
